@@ -1,0 +1,148 @@
+# 1. Создать список и заполнить его элементами различных типов данных.
+#Реализовать скрипт проверки типа данных каждого элемента.
+#Использовать функцию type() для проверки типа.
+#Элементы списка можно не запрашивать у пользователя,
+#а указать явно, в программе.
+
+
+first_array = [None, 5, -77, 'False', True, 1.255]
+def my_type(array):
+    for array in range(len(first_array)):
+        print(type(first_array[array]))
+    return
+my_type(first_array)
+
+# 2. Для списка реализовать обмен значений соседних элементов, т.е.
+#Значениями обмениваются элементы с индексами 0 и 1, 2 и 3 и т.д.
+#При нечетном количестве элементов последний сохранить
+#на своем месте.
+#Для заполнения списка элементов необходимо использовать
+#функцию input().
+
+counts = int(input("Введите количество элементов>>> "))
+first_array = []
+i = 0
+element = 0
+while i < counts:
+    first_array.append(input("Введите след. элемент>>> "))
+    i += 1
+
+for elem in range(int(len(first_array) / 2)):
+    first_array[element], first_array[element + 1] = first_array[element + 1], first_array[element]
+    element += 2
+print("Значения : ", first_array)
+
+
+# 3. Пользователь вводит месяц в виде целого числа от 1 до 12.
+#Сообщить к какому времени года относится месяц (зима, весна,
+#лето, осень).
+#Напишите решения через list и через dict.
+
+sesns_l = ['Зима', 'Весна', 'Лето', 'Осень']
+sesns_d = {1 : 'Зима', 2 : 'Весна', 3 : 'Лето', 4 : 'Осень'}
+numb = int(input("Какой номер месяца? >>> "))
+if numb ==1 or numb == 12 or numb == 2:
+        print("Это ", sesns_d.get(1))
+        print("Это ",sesns_l[0])
+elif numb == 3 or numb == 4 or numb ==5:
+    print("Это ",sesns_d.get(2))
+    print("Это ",sesns_l[1])
+elif numb == 6 or numb == 7 or numb == 8:
+    print("Это ",sesns_d.get(3))
+    print("Это ",sesns_l[2])
+
+elif numb == 9 or numb == 10 or numb == 11:
+    print("Это ",sesns_d.get(4))
+    print("Это ",sesns_l[3])
+else:
+        print("Введен номер не соответствующий месяцу.")
+        
+# 4. Пользователь вводит строку из нескольких слов, разделённых
+# пробелами. Вывести каждое слово с новой строки.
+# Строки необходимо пронумеровать. Если в слово длинное,
+# выводить только первые 10 букв в слове.
+
+ishod_string = input("введите слова, разделив их пробелом >>>  ")
+act_word = []
+numb = 1
+for stage in range(ishod_string.count(' ') + 1):
+    act_word = ishod_string.split()
+    if len(str(act_word)) <= 10:
+        print(f" {numb} {act_word [stage]}")
+        numb += 1
+    else:
+        print(f" {numb} {act_word [stage] [0:10]}")
+        numb += 1
+        
+# 5. Реализовать структуру «Рейтинг», представляющую собой
+# не возрастающий набор натуральных чисел.
+# У пользователя необходимо запрашивать новый элемент рейтинга.
+# Если в рейтинге существуют элементы с одинаковыми значениями,
+# то новый элемент с тем же значением должен разместиться
+# после них.
+
+reiting_etalon = [8, 5, 5, 4, 2]
+print(f"Текущий Рейтинг : {reiting_etalon}")
+numb = int(input("Введите число (Для выхода из рейтинга введите 000) >>> "))
+while numb != 000:
+    for el in range(len(reiting_etalon)):
+        if reiting_etalon[el] == numb:
+            reiting_etalon.insert(el + 1, numb)
+            break
+        elif reiting_etalon[0] < numb:
+            reiting_etalon.insert(0, numb)
+        elif reiting_etalon[-1] > numb:
+            reiting_etalon.append(numb)
+        elif reiting_etalon[el] > numb and reiting_etalon[el + 1] < numb:
+            reiting_etalon(el + 1, numb)
+    print(f"текущий список - {reiting_etalon}")
+    numb = int(input("Введите число (Для выхода из рейтинга введите 000) >>> "))
+    
+    
+# 6. Реализовать структуру данных «Товары». Она должна представлять
+# собой список кортежей. Каждый кортеж хранит информацию об
+# отдельном товаре. В кортеже должно быть два элемента —
+# номер товара и словарь с параметрами (характеристиками товара:
+# название, цена, количество, единица измерения).
+# Структуру нужно сформировать программно, т.е.
+# запрашивать все данные у пользователя.    
+
+
+goods = []
+fetres = {'Название': '', 'Ценник': '', 'Кол-во': '', 'В чем измерено': ''}
+analys = {'Название': [], 'Ценник': [], 'Кол-во': [], 'В чем измерено': []}
+numb = 0
+feature_ = None
+control = None
+while True:
+    control = input("Для продолжения ввода, нажмите ВВОД, для вывода текущего анализа нажмите А, для выхода Q'").upper()
+    if control == 'Q':
+        break
+    numb += 1
+    if control == 'A':
+        print(f'\n >>>Текущий анализ<<< \n {"-" * 30}')
+        for key, value in analys.items():
+            print(f'{key[:25]:>30}: {value}')
+            print("-" * 30)
+    for f in fetres.keys():
+        feature_ = input(f'Input feature "{f}"')
+        fetres[f] = int(feature_) if (f == 'price' or f == 'quantity') else feature_
+        analys[f].append(fetres[f])
+    goods.append((numb, fetres))
+goods = int(input("Введите количество товара "))
+n = 1
+str = []
+list = []
+analysys = {}
+while n <= goods:
+    str = dict({'название': input("введите название "), 'цена': input("Введите цену "),
+                'количество': input('Введите количество '), 'eд': input("Введите единицу измерения ")})
+    list.append((n, str))
+    n += 1
+    analysys = dict({'название': str.get('название'), 'цена': str.get('цена'), 'количество': str.get('количество'),
+                      'ед': str.get('ед')})
+print(list)
+print(analysys)
+
+
+
