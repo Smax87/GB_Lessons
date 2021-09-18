@@ -13,7 +13,7 @@ def salary():
         rslt = tme * slry + bonus
         print(f'зарплата сотрудника>>>  {rslt}')
     except ValueError:
-        return print('NoN')
+        return print('NaN')
 salary()
 
 #2. Представлен список чисел. Необходимо вывести элементы
